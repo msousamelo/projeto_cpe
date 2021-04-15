@@ -11,7 +11,7 @@ void cadastra_patrimonio();
 void busca_arquivo();
 void atualiza_arquivo();
 void remove_patrimonio();
-void encerra();
+int encerra();
 
 
 

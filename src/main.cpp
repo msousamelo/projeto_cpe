@@ -52,6 +52,7 @@ void cadastra_patrimonio()
 
     file.close();
 
+
 }
 
 void busca_arquivo(){
@@ -128,6 +129,50 @@ void atualiza_arquivo(){
 
 }
 
+void remove_patrimonio(){
+    string numero;
+    string novo_numero;
+    string novo_responsavel;
+    string novo_setor;
+    string myText;
+    // abre o arquivo para leitura
+    ifstream MyReadFile("banco_de_dados.txt");
 
+    // cria um vetor com cada linha do arquivo existente
+    std::vector<std::string> arquivo_salvo;
+    while (getline(MyReadFile, myText)){
+        arquivo_salvo.push_back(myText);
+    }
+    MyReadFile.close();
+    cout << "Para a remoção, insira o numero do patrimonio: " << endl;
+    cin >> numero;
+    for (unsigned int i = 0 ; i < arquivo_salvo.size(); ++i){
+        if (arquivo_salvo.at(i) == numero){
+            i--;
+            arquivo_salvo.erase(arquivo_salvo.begin() + i);
+            i++;
+            arquivo_salvo.erase(arquivo_salvo.begin() + i);
+            i++;
+            arquivo_salvo.erase(arquivo_salvo.begin() + i);
+            i++;
+            arquivo_salvo.erase(arquivo_salvo.begin() + i);
+        }
+    }
+
+    std::ofstream file;
+    file.open("banco_de_dados.txt", std::ios::out);
+
+    for (std::string item : arquivo_salvo)
+    {
+        file << item << std::endl;
+    }
+
+    file.close();
+
+}
+
+int encerra(){
+    return 0;
+}
 
 

@@ -31,6 +31,9 @@ int main() {
 		case 3:
 			atualiza_arquivo();
 			break;
+		case 4:
+			remove_patrimonio();
+			break;
 	}
 
 	return 0;
