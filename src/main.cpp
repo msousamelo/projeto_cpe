@@ -8,10 +8,12 @@
 #include <fstream>
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <cctype>
 using namespace std;
 
 void cadastra_patrimonio()
-{
+{   
+    int numero;
     string myText;
     ifstream myfile("banco_de_dados.txt");
     dados patrimonio;
@@ -21,6 +23,7 @@ void cadastra_patrimonio()
 
     cout << "Insira o numero do patrimonio: " << endl;
     cin >> patrimonio.numero;
+
     // verifica se o numero já existe no arquivo
         while (getline(myfile, myText)){
             if (myText == patrimonio.numero){
@@ -101,8 +104,14 @@ void atualiza_arquivo(){
         arquivo_salvo.push_back(myText);
     }
     MyReadFile.close();
+    /* antes de atualizar, é necessário
+    encontrar qual patrimonio
+    sera atualizado */
     cout << "Para a atualização, insira o numero do patrimonio: " << endl;
     cin >> numero;
+
+    /* loop para fazer a busca e compara se o item no indice
+    i é igual ao item inserido pelo usuario */
     for (unsigned int i = 0 ; i < arquivo_salvo.size(); ++i){
         if (arquivo_salvo.at(i) == numero){
             i = i + 1;
@@ -148,14 +157,7 @@ void remove_patrimonio(){
     cin >> numero;
     for (unsigned int i = 0 ; i < arquivo_salvo.size(); ++i){
         if (arquivo_salvo.at(i) == numero){
-            i--;
-            arquivo_salvo.erase(arquivo_salvo.begin() + i);
-            i++;
-            arquivo_salvo.erase(arquivo_salvo.begin() + i);
-            i++;
-            arquivo_salvo.erase(arquivo_salvo.begin() + i);
-            i++;
-            arquivo_salvo.erase(arquivo_salvo.begin() + i);
+            arquivo_salvo.erase(arquivo_salvo.begin() + (i - 1), arquivo_salvo.begin() + (i + 3));
         }
     }
 

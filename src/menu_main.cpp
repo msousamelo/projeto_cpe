@@ -16,9 +16,8 @@ int main() {
 	menu_validacao();
 
 
-	if (validar_login()){
+	if (validar_login() == true){
 		escolha = selecao_menu();
-		
 	}
 
 	switch(escolha){

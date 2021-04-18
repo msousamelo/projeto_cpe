@@ -18,24 +18,53 @@ void menu_validacao()
 	cout << "Nota: Para o campo usuario utilize o numero da sua matricula." << endl;
 	cout << endl;
 };
-bool validar_login()
-{
-	int usuario;
-	int senha;
-	cout << "Insira usuario:" << endl;
-	cin >> usuario;
-	cout << "Insira senha:" << endl;
-	cin >> senha;
 
-	while (usuario != 160032890 && senha != 10221300)
-	{
-		cout << "Matrícula ou senha incorretos!" << endl;
-		cout << "Insira usuario:" << endl;
-		cin >> usuario;
-		cout << "Insira senha:" << endl;
-		cin >> senha;
-	};
+class loginManager{
+    public:
+        string userNameAttempt;
+        string passWordAttempt;
+
+        bool login(){
+            cout << "Para acessar o sistema, utilize seu login e senha" << endl;
+            cout << "Login: " << endl;
+            cin >> userNameAttempt;
+			cout << "Senha: " << endl;
+			cin >> passWordAttempt;
+
+			while ((userNameAttempt != userName) 
+			|| (passWordAttempt != passWord)){
+				cout << "Login ou senha incorretos!" << endl;
+				cout << "Login: " << endl;
+				cin >> userNameAttempt;
+				cout << "Senha: " << endl;
+				cin >> passWordAttempt;
+			}
+
+            if (userNameAttempt == userName){
+                if (passWordAttempt == passWord){
+                    cout << "Login realizado!" << endl;
+					return true;
+                }
+            } else {
+				return false;
+			}
+        }
+
+    private:
+        string passWord = "10221300";
+        string userName = "160032890";
+};
+
+bool validar_login(){
+    loginManager app;
+    if (app.login()){
+		return true;
+	} else {
+		cout << "Login invalido!" << endl;
+		return false;
+	}
 }
+
 
 int selecao_menu()
 {
