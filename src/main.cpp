@@ -38,16 +38,21 @@ void cadastra_patrimonio()
     cout << "Insira o nome e sobrenome do responsável: " << endl;
     cin >> patrimonio.responsavel;
 
-    // instance of a ofstream called "file"
+    /* cria uma instancia do tipo osftream cahamda file, 
+    esse arquivo tera como nome banco_de_dados.txt
+    */
     std::ofstream file;
     file.open("banco_de_dados.txt", std::ios::app);
+    /* abertura do arquivo no modo append */
 
+    /* cria um vetor com cada propriedade do patrimonio */
     std::vector<std::string> propriedades;
     propriedades.push_back(patrimonio.nome);
     propriedades.push_back(patrimonio.numero);    
     propriedades.push_back(patrimonio.setor);
     propriedades.push_back(patrimonio.responsavel);
 
+    /* adiciona cada item do vetor no arquivo */
     for (std::string item : propriedades)
     {
         file << item << std::endl;
@@ -125,6 +130,8 @@ void atualiza_arquivo(){
             arquivo_salvo[i] = novo_responsavel;
         }
     }
+    /* apos verificar se o numero consta no vetor, os valores
+    sao atualizados com a entrada do usuario */
 
     std::ofstream file;
     file.open("banco_de_dados.txt", std::ios::app);
@@ -155,15 +162,20 @@ void remove_patrimonio(){
     MyReadFile.close();
     cout << "Para a remoção, insira o numero do patrimonio: " << endl;
     cin >> numero;
+    /* como sabemos que antes do numero vem seu nome, removemos
+    a partir do indice "i - 1" ate o indice "i + 3"
+    */
     for (unsigned int i = 0 ; i < arquivo_salvo.size(); ++i){
         if (arquivo_salvo.at(i) == numero){
             arquivo_salvo.erase(arquivo_salvo.begin() + (i - 1), arquivo_salvo.begin() + (i + 3));
         }
     }
 
+    // reescreve o arquivo atualizado, sem os itens previamente removidos
     std::ofstream file;
     file.open("banco_de_dados.txt", std::ios::out);
 
+    // loop para escrita de cada item do vetor no arquivo
     for (std::string item : arquivo_salvo)
     {
         file << item << std::endl;
@@ -173,6 +185,7 @@ void remove_patrimonio(){
 
 }
 
+// encerra o programa
 int encerra(){
     return 0;
 }
