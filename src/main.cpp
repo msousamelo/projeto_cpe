@@ -27,7 +27,7 @@ void cadastra_patrimonio()
     // verifica se o numero já existe no arquivo
         while (getline(myfile, myText)){
             if (myText == patrimonio.numero){
-                cout << "Numero já existe!" << endl;
+                cout << "Numero já existe!Digite outro numero" << endl;
                 cin >> patrimonio.numero;
             }
         }
